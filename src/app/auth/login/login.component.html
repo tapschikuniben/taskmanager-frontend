@@ -1,0 +1,57 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        class="form-input"
+        formControlName="username"
+        placeholder="Enter your username"
+      />
+      <div
+        *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+        class="error"
+      >
+        <small *ngIf="loginForm.get('username')?.errors?.['required']">
+          Username is required.
+        </small>
+        <small *ngIf="loginForm.get('username')?.errors?.['username']"> 
+          Please enter a valid username.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="form-input"
+        formControlName="password"
+        placeholder="Enter your password"
+      />
+      <div
+        *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        class="error"
+      >
+        <small>Password is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="loginForm.invalid">
+      Login
+    </button>
+  </form>
+
+  <div class="redirect-text">
+    Don't have an account? 
+    <a href="/register">Register here</a>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="task-form-container">
+  <button type="button" class="back-button" (click)="goBack()">← Back</button>
+
+  <h2>{{ taskId ? 'Edit Task' : 'New Task' }}</h2>
+
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <!-- Form fields -->
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" formControlName="title" class="form-input" placeholder="Enter task title" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-input" placeholder="Enter task description"></textarea>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="taskForm.invalid">
+      {{ taskId ? 'Update Task' : 'Create Task' }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,132 @@
+/* Base container styling */
+.register-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  /* Consistent shadow and hover effect from login */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.register-container:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #343a40; 
+  font-weight: 600;
+}
+
+/* Form group (label + input) spacing */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.register-container label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+/* Input field styling (MUST use box-sizing for correct width) */
+.form-input {
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Validation and Error Styling (for individual form field errors) */
+.error {
+  color: #dc3545; /* Consistent error color */
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Submission Error Message (retained your colors but matched login padding/margin) */
+.error-message {
+  color: #dc3545; /* Darker red text for visibility */
+  background-color: #f8d7da; /* Light red background */
+  border: 1px solid #dc3545; /* Red border */
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Success Message (retained your colors but matched login padding/margin) */
+.success-message {
+  color: #155724; /* Dark green text */
+  background-color: #d4edda; /* Light green background */
+  border: 1px solid #c3e6cb; /* Green border */
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+/* Submit button styling */
+.submit-button {
+  width: 100%; /* Matches input width */
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s;
+  margin-top: 1rem;
+}
+
+.submit-button:hover:not([disabled]) {
+  background-color: #0056b3;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Disabled state: Light grey background, dark grey text */
+.submit-button[disabled] {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Redirect text (Login link) */
+.redirect-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.redirect-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.redirect-text a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

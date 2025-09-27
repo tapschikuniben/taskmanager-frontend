@@ -1,0 +1,104 @@
+<div class="register-container">
+  <h2>Register</h2>
+
+  <!-- Success message -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input 
+        id="username" 
+        type="text" 
+        class="form-input" 
+        formControlName="username" 
+        placeholder="Enter username"
+      />
+      <div 
+        *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+        class="error"
+      >
+        <small *ngIf="registerForm.get('username')?.errors?.['required']">
+          Username is required.
+        </small>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        id="email" 
+        type="email" 
+        class="form-input" 
+        formControlName="email" 
+        placeholder="Enter email"
+      />
+      <div 
+        *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+        class="error"
+      >
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">
+          Email is required.
+        </small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">
+          Please enter a valid email.
+        </small>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        id="password" 
+        type="password" 
+        class="form-input" 
+        formControlName="password" 
+        placeholder="Enter password"
+      />
+      <div 
+        *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+        class="error"
+      >
+        <small>Password is required.</small>
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        class="form-input"
+        formControlName="confirmPassword"
+        placeholder="Confirm password"
+      />
+      <div
+        *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched"
+        class="error"
+      >
+        <small>Passwords do not match.</small>
+      </div>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="submit-button" [disabled]="registerForm.invalid">
+      Register
+    </button>
+  </form>
+
+  <!-- Redirect text -->
+  <div class="redirect-text">
+    Already have an account? <a href="/login">Login here</a>
+  </div>
+</div>

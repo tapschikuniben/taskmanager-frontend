@@ -1,0 +1,56 @@
+<div class="tasks-container">
+  <h2>Your Tasks</h2>
+
+  <div *ngIf="loading">Loading tasks...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <button class="create-btn" (click)="createTask()">➕ Create New Task</button>
+
+  <table *ngIf="tasks.length > 0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>
+          <select 
+            class="status-dropdown"
+            [value]="task.status"
+            (change)="updateTaskStatusFromEvent(task, $event)">
+            <option value="PENDING">⏳ PENDING</option>
+            <option value="IN_PROGRESS">🚧 IN_PROGRESS</option>
+            <option value="COMPLETED">✅ COMPLETED</option>
+            <option value="CANCELLED">❌ CANCELLED</option>
+          </select>
+        </td>
+        <td>
+          <button class="edit-btn" (click)="editTask(task.id)">✏️ Edit</button>
+          <button class="delete-btn" (click)="openDeleteModal(task)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="tasks.length === 0 && !loading">
+    No tasks found. Create your first task!
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal-backdrop" *ngIf="taskToDelete">
+  <div class="modal-content">
+    <p>Are you sure you want to delete "<strong>{{ taskToDelete.title }}</strong>"?</p>
+    <div class="modal-actions">
+      <button class="delete-btn" (click)="confirmDelete()">Yes, Delete 🗑️</button>
+      <button class="cancel-btn" (click)="taskToDelete = null">Cancel ❌</button>
+    </div>
+  </div>
+</div>
